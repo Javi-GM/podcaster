@@ -54,3 +54,15 @@ it("should filter podcasts by name", async () => {
 
     expect(podcasts).toHaveLength(1);
 });
+
+it("should filter podcasts by author", async () => {
+    const queryClient = new QueryClient();
+
+    render(<QueryClientProvider client={queryClient}><Home /></QueryClientProvider>);
+
+    const filter = await screen.findByRole("textbox", { name: /Filter podcasts by name or author/i });
+    await userEvent.type(filter, "The Joe Budden Network");
+    const podcasts = await screen.findAllByRole("article");
+
+    expect(podcasts).toHaveLength(1);
+});

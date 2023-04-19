@@ -1,3 +1,4 @@
+import { useState, useMemo } from 'react';
 import styled from "styled-components";
 import { PodcastCard } from "../../components/PodcastCard/PodcastCard";
 import { usePodcasts } from "../../hooks/usePodcasts";
@@ -11,12 +12,40 @@ export const Home = () => {
         return null;
     }
 
+    const [search, setSearch] = useState<string>('');
+
+    const filteredPodcasts = useMemo(() => {
+        if (!search) {
+            return podcasts;
+        }
+
+        return podcasts.filter(({ name, author }) => {
+            return name.toLowerCase().includes(search.toLowerCase())
+                || author.toLowerCase().includes(search.toLowerCase());
+        });
+    }, [search, podcasts]);
+
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+    }
+
     return (
         <>
             <h1>Podcaster</h1>
+            <Search>
+                <PodcastCounter>{filteredPodcasts.length}</PodcastCounter>
+                <input
+                    type="text"
+                    name="search"
+                    aria-label="Filter podcasts by name or author"
+                    value={search}
+                    onChange={handleSearch}
+                    placeholder='Search for a podcast...'
+                />
+            </Search>
             {!loading &&
                 <PodCastsSection aria-label="Most popular podcasts on Apple Podcasts">
-                    {podcasts.map(({ id, name, author, image }) => (
+                    {filteredPodcasts.map(({ id, name, author, image }) => (
                         <PodcastCard key={id} id={id} name={name} author={author} image={image} />
                     ))}
                 </PodCastsSection>
@@ -31,4 +60,16 @@ const PodCastsSection = styled.section`
     grid-gap: 24px;
     grid-row-gap: 56px;
     margin-block-start: 64px;
+`;
+
+const Search = styled.div`
+    display: flex;
+    gap: 16px;
+    justify-content: end;
+`;
+
+const PodcastCounter = styled.span`
+    background: #5c9bff;
+    padding: 8px;
+    border-radius: 4px;
 `;
