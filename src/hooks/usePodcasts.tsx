@@ -3,7 +3,8 @@ import { PodcastService } from "../services/Podcasts/PodcastService";
 
 interface Podcast {
     id: number;
-    title: string;
+    name: string;
+    author: string;
     summary: string;
 }
 
@@ -27,7 +28,8 @@ export const usePodcasts = (): usePodcastResponse => {
         error: isError,
         podcasts: data?.feed?.entry.map(p => ({
             id: p.id.attributes['im:id'],
-            title: p['im:name'].label,
+            author: p['im:artist'].label,
+            name: p['im:name'].label,
             summary: p.summary.label
         })) || [],
         loading: isLoading
