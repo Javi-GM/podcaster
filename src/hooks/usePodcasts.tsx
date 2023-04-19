@@ -6,6 +6,7 @@ interface Podcast {
     name: string;
     author: string;
     summary: string;
+    image: string;
 }
 
 interface usePodcastResponse {
@@ -30,7 +31,8 @@ export const usePodcasts = (): usePodcastResponse => {
             id: p.id.attributes['im:id'],
             author: p['im:artist'].label,
             name: p['im:name'].label,
-            summary: p.summary.label
+            summary: p.summary.label,
+            image: p['im:image'][2].label
         })) || [],
         loading: isLoading
     }

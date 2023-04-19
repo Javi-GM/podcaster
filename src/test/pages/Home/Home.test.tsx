@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Home } from '../../../pages/Home/Home';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -30,12 +30,14 @@ it("podcasts should have a title, image and author", async () => {
 
     render(<QueryClientProvider client={queryClient}><Home /></QueryClientProvider>);
 
-    const podcast = await screen.findByRole("article");
-    const name = await screen.findByRole("heading", { level: 3 }, { container: podcast });
-    const author = await screen.findByRole("heading", {}, { container: podcast });
-    const image = await screen.findByRole("img", {}, { container: podcast });
+    const podcasts = await screen.findAllByRole("article");
+    const podcast = podcasts[0];
+
+    const name = await within(podcast).findByRole("heading", { level: 3 });
+    const author = await within(podcast).findByText("The Joe Budden Network");
+    const image = await within(podcast).findByRole("img");
 
     expect(name).toHaveTextContent("The Joe Budden Podcast");
-    expect(author).toHaveTextContent("The Joe Budden Network");
+    expect(author).toBeVisible();
     expect(image).toBeVisible();
 });
