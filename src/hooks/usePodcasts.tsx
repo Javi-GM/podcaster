@@ -1,13 +1,7 @@
 import { useQuery } from "react-query"
 import { PodcastService } from "../services/Podcasts/PodcastService";
+import { Podcast } from "../interfaces/interfaces";
 
-interface Podcast {
-    id: number;
-    name: string;
-    author: string;
-    summary: string;
-    image: string;
-}
 
 interface usePodcastResponse {
     error: boolean;

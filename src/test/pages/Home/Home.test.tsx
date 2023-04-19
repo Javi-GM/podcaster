@@ -1,6 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { Home } from '../../../pages/Home/Home';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import userEvent from '@testing-library/user-event';
 
 it("should render home page with the name of the app", () => {
     const queryClient = new QueryClient();
@@ -40,4 +41,16 @@ it("podcasts should have a title, image and author", async () => {
     expect(name).toHaveTextContent("The Joe Budden Podcast");
     expect(author).toBeVisible();
     expect(image).toBeVisible();
+});
+
+it("should filter podcasts by name", async () => {
+    const queryClient = new QueryClient();
+
+    render(<QueryClientProvider client={queryClient}><Home /></QueryClientProvider>);
+
+    const filter = await screen.findByRole("textbox", { name: /Filter podcasts by name or author/i });
+    await userEvent.type(filter, "The Joe Budden Podcast");
+    const podcasts = await screen.findAllByRole("article");
+
+    expect(podcasts).toHaveLength(1);
 });
