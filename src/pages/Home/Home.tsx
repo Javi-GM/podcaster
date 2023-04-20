@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import styled from "styled-components";
 import { PodcastCard } from "../../components/PodcastCard/PodcastCard";
 import { usePodcasts } from "../../hooks/usePodcasts";
-import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
     const { podcasts, loading, error } = usePodcasts();
