@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import styled from "styled-components";
 import { PodcastCard } from "../../components/PodcastCard/PodcastCard";
 import { usePodcasts } from "../../hooks/usePodcasts";
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
     const { podcasts, loading, error } = usePodcasts();
@@ -31,7 +32,6 @@ export const Home = () => {
 
     return (
         <>
-            <h1>Podcaster</h1>
             <Search>
                 <PodcastCounter>{filteredPodcasts.length}</PodcastCounter>
                 <input
@@ -46,7 +46,13 @@ export const Home = () => {
             {!loading &&
                 <PodCastsSection aria-label="Most popular podcasts on Apple Podcasts">
                     {filteredPodcasts.map(({ id, name, author, image }) => (
-                        <PodcastCard key={id} id={id} name={name} author={author} image={image} />
+                        <PodcastCard
+                            key={id}
+                            id={id}
+                            name={name}
+                            author={author}
+                            image={image}
+                        />
                     ))}
                 </PodCastsSection>
             }

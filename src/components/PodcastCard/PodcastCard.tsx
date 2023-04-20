@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {
@@ -8,8 +9,14 @@ interface Props {
 }
 
 export function PodcastCard({ id, name, author, image }: Props) {
+    const navigate = useNavigate();
+
+    const handleNavigation = () => {
+        navigate(`/podcast/${id}`);
+    }
+
     return (
-        <Wrapper key={id}>
+        <Wrapper key={id} onClick={handleNavigation}>
             <ImageContainer>
                 <ImageWrapper src={image} alt={`Cover of ${name} podcast`} />
             </ImageContainer>
