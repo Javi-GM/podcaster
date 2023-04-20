@@ -18,7 +18,7 @@ it("should show details of a podcast such as title, author, image and summary", 
     );
 
     const name = await screen.findByText("The Joe Budden Podcast");
-    const author = await screen.findByText("The Joe Budden Network");
+    const author = await screen.findByText("by The Joe Budden Network");
     const img = await screen.findByRole("img");
     const summary = await screen.findByText("Tune into Joe Budden and his friends. Follow along the crazy adventures of these very random friends.");
 
@@ -26,4 +26,23 @@ it("should show details of a podcast such as title, author, image and summary", 
     expect(author).toBeVisible();
     expect(img).toBeVisible();
     expect(summary).toBeVisible();
+});
+
+it("should show number of episodes", async () => {
+    const queryClient = new QueryClient();
+
+    const router = createMemoryRouter(routes, {
+        initialEntries: ["/podcast/1535809341"],
+    })
+
+    render(
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+        </QueryClientProvider >
+    );
+
+
+    const episodes = await screen.findByText("Episodes: 20");
+
+    expect(episodes).toBeVisible();
 });
