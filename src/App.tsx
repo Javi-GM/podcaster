@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-const router = createBrowserRouter([
+export const routes = [
   {
     path: "/",
     element: <Home />,
@@ -16,7 +16,9 @@ const router = createBrowserRouter([
     path: "/podcast/:id",
     element: <PodcastDetails />,
   }
-]);
+];
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
