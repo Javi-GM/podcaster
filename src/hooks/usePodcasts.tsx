@@ -1,7 +1,6 @@
 import { useQuery } from "react-query"
-import { PodcastService } from "../services/Podcasts/PodcastService";
+import { PodcastService } from "../services/PodcastService";
 import { Podcast } from "../interfaces/interfaces";
-
 
 interface usePodcastResponse {
     error: boolean;
@@ -17,6 +16,7 @@ export const usePodcasts = (): usePodcastResponse => {
     } = useQuery(
         'podcasts',
         () => PodcastService.getPodcasts(),
+        // TODO: probably the react query config should be moved to a separate file
         {
             staleTime: 24 * 60 * 60 * 1000,
         }
@@ -24,13 +24,7 @@ export const usePodcasts = (): usePodcastResponse => {
 
     return {
         error: isError,
-        podcasts: data?.feed?.entry.map(p => ({
-            id: p.id.attributes['im:id'],
-            author: p['im:artist'].label,
-            name: p['im:name'].label,
-            summary: p.summary.label,
-            image: p['im:image'][2].label
-        })) || [],
+        podcasts: data || [],
         loading: isLoading
     }
 }

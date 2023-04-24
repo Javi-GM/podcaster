@@ -9,8 +9,8 @@ export interface Podcast {
 export interface Episode {
     id: number;
     title: string;
-    description: string;
+    description: string | undefined;
     date: string;
     durationInMilliseconds: number;
-    audioUrl: string;
+    audioUrl: string | undefined;
 }
