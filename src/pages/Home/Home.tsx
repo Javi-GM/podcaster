@@ -33,7 +33,7 @@ export const Home = () => {
         <>
             <Search>
                 <PodcastCounter>{filteredPodcasts.length}</PodcastCounter>
-                <input
+                <SearchInput
                     type="text"
                     name="search"
                     aria-label="Filter podcasts by name or author"
@@ -73,8 +73,13 @@ const Search = styled.div`
     justify-content: end;
 `;
 
+const SearchInput = styled.input`
+    padding: 2px 4px;
+`;
+
 const PodcastCounter = styled.span`
     background: #5c9bff;
     padding: 8px;
     border-radius: 4px;
+    color: white;
 `;
