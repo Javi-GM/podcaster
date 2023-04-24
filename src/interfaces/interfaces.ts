@@ -5,3 +5,12 @@ export interface Podcast {
     summary: string;
     image: string;
 }
+
+export interface Episode {
+    id: number;
+    title: string;
+    description: string;
+    date: string;
+    durationInMilliseconds: number;
+    audioUrl: string;
+}
