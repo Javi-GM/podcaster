@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         padding: 32px;
+        font-family: Montserrat;
     }
     
     img, picture, video, canvas, svg {
