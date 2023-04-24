@@ -16,7 +16,10 @@ export const usePodcasts = (): usePodcastResponse => {
         isError
     } = useQuery(
         'podcasts',
-        () => PodcastService.getPodcasts()
+        () => PodcastService.getPodcasts(),
+        {
+            staleTime: 24 * 60 * 60 * 1000,
+        }
     );
 
     return {

@@ -11,7 +11,10 @@ interface Params {
 export const usePodcastDetails = (id: number): Params => {
     const { data, } = useQuery(
         'podcastDetails', 
-        () => PodcastService.getPodcastDetails(id)
+        () => PodcastService.getPodcastDetails(id),
+        {
+            staleTime: 24 * 60 * 60 * 1000,
+        }
     );
 
     const rawEpisodes = data?.results?.slice(1) || [];
