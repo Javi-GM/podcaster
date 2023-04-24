@@ -1,8 +1,9 @@
 import React from "react";
-import EpisodesContext from "../contexts/episodesContext";
+import EpisodesContext from "../../contexts/episodesContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+// TODO: I'd move this to a separate file if it were used elsewhere
 const parseDuration = (duration: number) => {
     const durationInSeconds: number = Math.floor(duration / 1000);
     const hours = Math.floor(durationInSeconds / 3600);

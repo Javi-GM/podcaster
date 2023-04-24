@@ -1,5 +1,5 @@
 import React from "react";
-import EpisodesContext from "../contexts/episodesContext";
+import EpisodesContext from "../../contexts/episodesContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,7 +18,7 @@ export function PodcastEpisodeDetails() {
             <Title>{episode.title}</Title>
             <Content>
                 <div>{episode.description}</div>
-                <Audio controls>
+                <Audio controls role="audio">
                     <source src={episode.audioUrl} type="audio/mpeg" />
                 </Audio>
             </Content>

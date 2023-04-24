@@ -2,6 +2,8 @@ import { useQuery } from "react-query"
 import { PodcastService } from "../services/Podcasts/PodcastService";
 import { Episode } from "../interfaces/interfaces";
 
+const parseDate = (date: string) => date.split('T')[0].split('-').reverse().join('/');
+
 interface Params {
     episodes: Episode[]
 }
@@ -13,7 +15,6 @@ export const usePodcastDetails = (id: number): Params => {
     );
 
     const rawEpisodes = data?.results?.slice(1) || [];
-    const parseDate = (date: string) => date.split('T')[0].split('-').reverse().join('/');
 
     return {
         episodes: rawEpisodes.map((episode: any) => ({

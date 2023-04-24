@@ -1,44 +1,26 @@
-import { render, screen, within } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { routes } from '../../../App';
+import { initTestEnvironment } from '../../testEnvironment';
 
 it("should show 100 most popular podcast from Apple Podcasts", async () => {
-    const queryClient = new QueryClient();
-
-    const router = createMemoryRouter(routes, {
-        initialEntries: ["/"],
-    })
-
-    render(
-        <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-        </QueryClientProvider >
-    );
+    initTestEnvironment("/");
 
     const podcastsSection = await screen.findByRole(
         "region",
         { name: /Most popular podcasts on Apple Podcasts/i }
     );
 
-    const podcasts = await screen.findAllByRole("article", {}, { container: podcastsSection });
+    const podcasts = await screen.findAllByRole(
+        "article",
+        {},
+        { container: podcastsSection }
+    );
 
     expect(podcasts).toHaveLength(100);
 })
 
 it("podcasts should have a title, image and author", async () => {
-    const queryClient = new QueryClient();
-
-    const router = createMemoryRouter(routes, {
-        initialEntries: ["/"],
-    })
-
-    render(
-        <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-        </QueryClientProvider >
-    );
+    initTestEnvironment("/");
 
     const podcasts = await screen.findAllByRole("article");
     const podcast = podcasts[0];
@@ -53,20 +35,12 @@ it("podcasts should have a title, image and author", async () => {
 });
 
 it("should filter podcasts by name", async () => {
-    const queryClient = new QueryClient();
+    initTestEnvironment("/");
 
-
-    const router = createMemoryRouter(routes, {
-        initialEntries: ["/"],
-    })
-
-    render(
-        <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-        </QueryClientProvider >
+    const filter = await screen.findByRole(
+        "textbox",
+        { name: /Filter podcasts by name or author/i }
     );
-
-    const filter = await screen.findByRole("textbox", { name: /Filter podcasts by name or author/i });
     await userEvent.type(filter, "The Joe Budden Podcast");
     const podcasts = await screen.findAllByRole("article");
 
@@ -74,18 +48,12 @@ it("should filter podcasts by name", async () => {
 });
 
 it("should filter podcasts by author", async () => {
-    const queryClient = new QueryClient();
+    initTestEnvironment("/");
 
-    const router = createMemoryRouter(routes, {
-        initialEntries: ["/"],
-    })
-
-    render(
-        <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-        </QueryClientProvider >
+    const filter = await screen.findByRole(
+        "textbox",
+        { name: /Filter podcasts by name or author/i }
     );
-    const filter = await screen.findByRole("textbox", { name: /Filter podcasts by name or author/i });
     await userEvent.type(filter, "The Joe Budden Network");
     const podcasts = await screen.findAllByRole("article");
 

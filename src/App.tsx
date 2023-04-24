@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
-import { PodcastEpisodeDetails } from "./components/PodcastEpisodeDetails";
-import { PodcastEpisodesList } from "./components/PodcastEpisodesList";
+import { PodcastEpisodeDetails } from "./pages/PodcastDetails/PodcastEpisodeDetails";
+import { PodcastEpisodesList } from "./pages/PodcastDetails/PodcastEpisodesList";
 import { Home } from "./pages/Home/Home"
 import { PodcastDetails } from "./pages/PodcastDetails/PodcastDetails";
 import GlobalStyles from "./styles/globalStyles"
