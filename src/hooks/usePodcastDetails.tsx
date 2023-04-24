@@ -1,30 +1,28 @@
 import { useQuery } from "react-query"
 import { PodcastService } from "../services/Podcasts/PodcastService";
-
-interface Episode {
-
-}
+import { Episode } from "../interfaces/interfaces";
 
 interface Params {
     episodes: Episode[]
 }
 
 export const usePodcastDetails = (id: number): Params => {
-    const {
-        data,
-        isLoading,
-        isError
-    } = useQuery(
-        'podcastDetails',
+    const { data, } = useQuery(
+        'podcastDetails', 
         () => PodcastService.getPodcastDetails(id)
     );
 
-    // Slice to remove the first episode which is the podcast itself
     const rawEpisodes = data?.results?.slice(1) || [];
+    const parseDate = (date: string) => date.split('T')[0].split('-').reverse().join('/');
 
     return {
         episodes: rawEpisodes.map((episode: any) => ({
-            title: episode.trackName
+            id: episode.trackId,
+            title: episode.trackName,
+            description: episode.description,
+            date: parseDate(episode.releaseDate),
+            durationInMilliseconds: episode.trackTimeMillis,
+            audioUrl: episode.episodeUrl
         })),
     }
 }
