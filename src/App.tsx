@@ -1,4 +1,7 @@
 
+import styled from "styled-components";
+import { PodcastEpisodeDetails } from "./components/PodcastEpisodeDetails";
+import { PodcastEpisodesList } from "./components/PodcastEpisodesList";
 import { Home } from "./pages/Home/Home"
 import { PodcastDetails } from "./pages/PodcastDetails/PodcastDetails";
 import GlobalStyles from "./styles/globalStyles"
@@ -15,6 +18,16 @@ export const routes = [
   {
     path: "/podcast/:id",
     element: <PodcastDetails />,
+    children: [
+      {
+        path: "/podcast/:id",
+        element: <PodcastEpisodesList />,
+      },
+      {
+        path: "/podcast/:id/episodes/:episodeId",
+        element: <PodcastEpisodeDetails />,
+      },
+    ]
   }
 ];
 
@@ -24,10 +37,22 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <h1>Podcaster</h1>
-      <RouterProvider router={router} />
+      <Layout>
+        <Title>Podcaster</Title>
+        <RouterProvider router={router} />
+      </Layout>
     </>
   )
 }
 
 export default App
+
+const Title = styled.h1`
+  margin-bottom: 1.75rem;
+  font-size: 1.275rem;
+`;
+
+const Layout = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
