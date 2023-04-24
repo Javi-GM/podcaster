@@ -21,8 +21,8 @@ export function PodcastCard({ id, name, author, image }: Props) {
                 <ImageWrapper src={image} alt={`Cover of ${name} podcast`} />
             </ImageContainer>
             <Details>
-                <h3>{name}</h3>
-                {author}
+                <PodcastName>{name}</PodcastName>
+                <PodcastAuthor>{author}</PodcastAuthor>
             </Details>
         </Wrapper>
     )
@@ -30,8 +30,10 @@ export function PodcastCard({ id, name, author, image }: Props) {
 
 const Wrapper = styled.article`
     border: 1px solid hsla(0, 0%, 0%, 0.15);
-    width: 250px;
-    height: 175px;
+    width: 280px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
         cursor: pointer;
@@ -56,4 +58,21 @@ const ImageContainer = styled.div`
 
 const ImageWrapper = styled.img`
     border-radius: 50%;
+`;
+
+const PodcastName = styled.h3`
+    overflow: hidden;
+    word-break: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    text-align: center;
+`;
+
+const PodcastAuthor = styled.span`
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: #0000008d;
+    text-align: center;
 `;
