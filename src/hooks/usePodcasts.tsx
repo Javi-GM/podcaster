@@ -1,5 +1,5 @@
 import { useQuery } from "react-query"
-import { PodcastsRepository } from "../services/PodcastsRepository";
+import { PodcastsRepository } from "../repositories/PodcastsRepository";
 import { Podcast } from "../types/domainTypes";
 
 interface usePodcastResponse {

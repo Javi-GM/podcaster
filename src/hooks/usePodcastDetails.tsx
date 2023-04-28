@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { Episode } from "../types/domainTypes";
-import { EpisodesRepository } from "../services/EpisodesRepository";
+import { EpisodesRepository } from "../repositories/EpisodesRepository";
 
 interface Response {
     episodes: Episode[]
