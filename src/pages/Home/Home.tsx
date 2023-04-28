@@ -44,13 +44,9 @@ export const Home = () => {
             </Search>
             {!loading &&
                 <PodCastsSection aria-label="Most popular podcasts on Apple Podcasts">
-                    {filteredPodcasts.map(({ id, name, author, image }) => (
+                    {filteredPodcasts.map((podcast) => (
                         <PodcastCard
-                            key={id}
-                            id={id}
-                            name={name}
-                            author={author}
-                            image={image}
+                            podcast={podcast}
                         />
                     ))}
                 </PodCastsSection>
