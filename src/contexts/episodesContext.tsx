@@ -1,5 +1,7 @@
 import React from "react";
-import { Episode } from "../types/domainTypes";
+
+import { Episode } from "../models/Episode";
+
 
 const EpisodesContext = React.createContext([] as Episode[]);
 
