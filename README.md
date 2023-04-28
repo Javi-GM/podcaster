@@ -1,3 +1,7 @@
+## TO-DO
+- [ ] Improve scrollings and content overflows.
+- [ ] Make Layout for episodes section instead <Outlet> from router.
+- [ ] Improve use of html tags in some places.
 
 ## Running a Vite App in Development Mode
 

@@ -1,7 +1,9 @@
 import { Outlet, useParams } from "react-router-dom";
-import { usePodcasts } from "../../hooks/usePodcasts"
 import styled from "styled-components";
+
+import { usePodcasts } from "../../hooks/usePodcasts"
 import { usePodcastDetails } from "../../hooks/usePodcastDetails";
+
 import EpisodesContext from "../../contexts/episodesContext";
 
 
@@ -9,8 +11,6 @@ export function PodcastDetails() {
     const { id } = useParams();
     const { podcasts, loading } = usePodcasts();
     const { episodes } = usePodcastDetails(Number(id));
-
-    console.log("Render: PodcastDetails")
 
     const podcast = podcasts.find(podcast => podcast.id == Number(id));
 

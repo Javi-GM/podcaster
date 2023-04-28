@@ -3,7 +3,6 @@ import axios from "axios";
 import { Feed } from "../types/applePodcastTypes";
 import { Podcast } from "../models/Podcast";
 
-// TODO: move
 export const ITUNES_POPULAR_PODCASTS_URL =
     "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
