@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import styled from "styled-components";
-import { PodcastCard } from "../../components/PodcastCard/PodcastCard";
+import { PodcastCard } from "../../components/PodcastCard";
 import { usePodcasts } from "../../hooks/usePodcasts";
 
 export const Home = () => {

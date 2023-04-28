@@ -1,8 +1,8 @@
 import { rest } from "msw";
-import { ITUNES_POPULAR_PODCASTS_URL } from "../services/PodcastService";
+import { ITUNES_POPULAR_PODCASTS_URL } from "../services/PodcastsRepository";
 import podcasts from "./podcasts.json";
 import podcastDetails from "./podcastDetails.json";
-import { ITUNES_PODCAST_DETAILS_URL } from "../services/EpisodesService";
+import { ITUNES_PODCAST_DETAILS_URL } from "../services/EpisodesRepository";
 
 export const handlers = [
     rest.get(ITUNES_POPULAR_PODCASTS_URL, (req, res, ctx) => {

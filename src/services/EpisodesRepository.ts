@@ -1,11 +1,11 @@
 import axios from "axios";
-import { PodcastDetails, Result } from "../interfaces/appleInterfaces";
-import { Episode } from "../interfaces/interfaces";
+import { PodcastDetails, Result } from "../types/applePodcastTypes";
+import { Episode } from "../types/domainTypes";
 
 export const ITUNES_PODCAST_DETAILS_URL =
     "https://itunes.apple.com/lookup?id={id}&media=podcast&entity=podcastEpisode&limit=20";
 
-export const EpisodesService = {
+export const EpisodesRepository = {
     getEpisodes: async (id: number): Promise<Episode[]> => {
         try {
             const response = await axios.get<PodcastDetails>(

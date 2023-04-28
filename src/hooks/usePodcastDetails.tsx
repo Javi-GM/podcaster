@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
-import { Episode } from "../interfaces/interfaces";
-import { EpisodesService } from "../services/EpisodesService";
+import { Episode } from "../types/domainTypes";
+import { EpisodesRepository } from "../services/EpisodesRepository";
 
 interface Response {
     episodes: Episode[]
@@ -9,7 +9,7 @@ interface Response {
 export const usePodcastDetails = (id: number): Response => {
     const { data, } = useQuery(
         'podcastDetails', 
-        () => EpisodesService.getEpisodes(id),
+        () => EpisodesRepository.getEpisodes(id),
         {
             staleTime: 24 * 60 * 60 * 1000,
         }

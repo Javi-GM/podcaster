@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
-import { PodcastService } from "../services/PodcastService";
-import { Podcast } from "../interfaces/interfaces";
+import { PodcastsRepository } from "../services/PodcastsRepository";
+import { Podcast } from "../types/domainTypes";
 
 interface usePodcastResponse {
     error: boolean;
@@ -15,7 +15,7 @@ export const usePodcasts = (): usePodcastResponse => {
         isError
     } = useQuery(
         'podcasts',
-        () => PodcastService.getPodcasts(),
+        () => PodcastsRepository.getPodcasts(),
         // TODO: probably the react query config should be moved to a separate file
         {
             staleTime: 24 * 60 * 60 * 1000,

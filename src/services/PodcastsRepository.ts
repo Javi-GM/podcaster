@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Entry, Feed } from "../interfaces/appleInterfaces";
-import { Podcast } from "../interfaces/interfaces";
+import { Entry, Feed } from "../types/applePodcastTypes";
+import { Podcast } from "../types/domainTypes";
 
 export const ITUNES_POPULAR_PODCASTS_URL =
     "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
-export const PodcastService = {
+export const PodcastsRepository = {
     getPodcasts: async (): Promise<Podcast[]> => {
         try {
             const response = await axios.get<{ feed: Feed }>(
