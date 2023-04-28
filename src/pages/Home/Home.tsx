@@ -1,18 +1,22 @@
 import { useState, useMemo } from 'react';
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+
 import { PodcastCard } from "../../components/PodcastCard";
 import { usePodcasts } from "../../hooks/usePodcasts";
 
-export const Home = () => {
+export function Home() {
+    const [search, setSearch] = useState<string>('');
+
+    const navigate = useNavigate();
     const { podcasts, loading, error } = usePodcasts();
 
+    // TODO: implement error handling
     if (error) {
         console.error(error);
 
         return null;
     }
-
-    const [search, setSearch] = useState<string>('');
 
     const filteredPodcasts = useMemo(() => {
         if (!search) {
@@ -46,7 +50,9 @@ export const Home = () => {
                 <PodCastsSection aria-label="Most popular podcasts on Apple Podcasts">
                     {filteredPodcasts.map((podcast) => (
                         <PodcastCard
+                            key={podcast.id}
                             podcast={podcast}
+                            onClick={() => navigate(`/podcast/${podcast.id}`)}
                         />
                     ))}
                 </PodCastsSection>

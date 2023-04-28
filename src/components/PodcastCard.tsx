@@ -5,17 +5,13 @@ import { Podcast } from "../models/Podcast";
 
 interface Props {
     podcast: Podcast
+    onClick: () => void
 }
 
-export function PodcastCard({ podcast }: Props) {
-    const navigate = useNavigate();
-
-    const handleNavigation = () => {
-        navigate(`/podcast/${podcast.id}`);
-    }
+export function PodcastCard({ podcast, onClick }: Props) {
 
     return (
-        <Wrapper key={podcast.id} onClick={handleNavigation}>
+        <Wrapper key={podcast.id} onClick={onClick}>
             <ImageContainer>
                 <ImageWrapper src={podcast.image} alt={`Cover of ${podcast.name} podcast`} />
             </ImageContainer>
