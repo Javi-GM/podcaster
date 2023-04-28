@@ -1,9 +1,9 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { initTestEnvironment } from '../../testEnvironment';
+import { refreshCacheAndNavigateTo } from '../../utils';
 
 it("should show 100 most popular podcast from Apple Podcasts", async () => {
-    initTestEnvironment("/");
+    refreshCacheAndNavigateTo("/");
 
     const podcastsSection = await screen.findByRole(
         "region",
@@ -20,7 +20,7 @@ it("should show 100 most popular podcast from Apple Podcasts", async () => {
 })
 
 it("podcasts should have a title, image and author", async () => {
-    initTestEnvironment("/");
+    refreshCacheAndNavigateTo("/");
 
     const podcasts = await screen.findAllByRole("article");
     const podcast = podcasts[0];
@@ -35,7 +35,7 @@ it("podcasts should have a title, image and author", async () => {
 });
 
 it("should filter podcasts by name", async () => {
-    initTestEnvironment("/");
+    refreshCacheAndNavigateTo("/");
 
     const filter = await screen.findByRole(
         "textbox",
@@ -48,7 +48,7 @@ it("should filter podcasts by name", async () => {
 });
 
 it("should filter podcasts by author", async () => {
-    initTestEnvironment("/");
+    refreshCacheAndNavigateTo("/");
 
     const filter = await screen.findByRole(
         "textbox",

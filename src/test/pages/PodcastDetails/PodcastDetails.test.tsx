@@ -1,8 +1,8 @@
 import { screen, within } from '@testing-library/react';
-import { initTestEnvironment } from '../../testEnvironment';
+import { refreshCacheAndNavigateTo } from '../../utils';
 
 it("should show details of a podcast such as title, author, image and summary", async () => {
-    initTestEnvironment('/podcast/1535809341');
+    refreshCacheAndNavigateTo('/podcast/1535809341');
 
     const name = await screen.findByText("The Joe Budden Podcast");
     const author = await screen.findByText("by The Joe Budden Network");
@@ -16,7 +16,7 @@ it("should show details of a podcast such as title, author, image and summary", 
 });
 
 it("should show number of episodes", async () => {
-    initTestEnvironment('/podcast/1535809341')
+    refreshCacheAndNavigateTo('/podcast/1535809341')
 
     const episodes = await screen.findByText("Episodes: 20");
 
@@ -24,7 +24,7 @@ it("should show number of episodes", async () => {
 });
 
 it("should show a list of episodes on a table", async () => {
-    initTestEnvironment('/podcast/1535809341')
+    refreshCacheAndNavigateTo('/podcast/1535809341')
 
     const episodes = await screen.findAllByRole("row");
     const table = await screen.findByRole("table");
@@ -41,7 +41,7 @@ it("should show a list of episodes on a table", async () => {
 })
 
 it("should show a description of the episode", async () => {
-    initTestEnvironment('/podcast/1535809341/episodes/1000609597323');
+    refreshCacheAndNavigateTo('/podcast/1535809341/episodes/1000609597323');
 
     const startOfDescription = `The JBP starts this episode by recapping Coachella`;
     const partOfTheDescriptionRegex = new RegExp(startOfDescription, "i");
@@ -52,7 +52,7 @@ it("should show a description of the episode", async () => {
 });
 
 it("should show a player to play the episode", async () => {
-    initTestEnvironment('/podcast/1535809341/episodes/1000609597323');
+    refreshCacheAndNavigateTo('/podcast/1535809341/episodes/1000609597323');
 
     const player = await screen.findByRole("audio");
 
