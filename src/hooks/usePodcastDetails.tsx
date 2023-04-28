@@ -10,7 +10,7 @@ interface Response {
 }
 
 export const usePodcastDetails = (podcastId: number): Response => {
-    const { data, } = useQuery(
+    const { data } = useQuery(
         'podcastDetails', 
         () => EpisodesRepository.getEpisodes(podcastId),
         {
